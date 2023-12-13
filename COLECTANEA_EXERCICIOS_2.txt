@@ -1,0 +1,170 @@
+(Questão 1)
+
+Nome da BD: GestaoAlunos
+
+use GestaoAlunos
+
+Coleções:
+
+db.createCollection("Cursos")
+db.createCollection("Alunos")
+db.createCollection("Disciplinas")
+
+show collections
+
+
+
+Coleção Cursos:
+
+db.Cursos.insertOne({"id":1,"nome_curso":"Curso 1","departamento":"Dep. 1","diretor_curso":"Diretor 1"})
+
+db.Cursos.insertOne({"id":2,"nome_curso":"Curso 2","departamento":"Dep. 2","diretor_curso":"Diretor 2"})
+
+db.Cursos.insertOne({"id":3,"nome_curso":"Curso 3","departamento":"Dep. 3","diretor_curso":"Diretor 3"})
+
+db.Cursos.insertOne({"id":4,"nome_curso":"Curso 4","departamento":"Dep. 4","diretor_curso":"Diretor 4"})
+
+db.Cursos.insertOne({"id":5,"nome_curso":"Curso 5","departamento":"Dep. 5","diretor_curso":"Diretor 5"})
+
+
+
+Coleção Alunos:
+
+db.Alunos.insertOne({"id" : 1,"nome_aluno" : "João","apelido_aluno" : "Silva","data_nasc_aluno" : ISODate("2000-03-25"),"morada_aluno" : "Funchal","email_aluno" : "joaosilva@universidade.pt","telemovel_aluno" : "123123123","id_curso" : 5})
+
+
+db.Alunos.insertOne({"id" : 2,"nome_aluno" : "Tiago","apelido_aluno" : "Pereira","data_nasc_aluno" : ISODate("2000-06-20"),"morada_aluno" : "Machico","email_aluno" : "tiagopereira@universidade.pt","telemovel_aluno" : "456456456","id_curso" : 4})
+
+
+db.Alunos.insertOne({"id" : 3,"nome_aluno" : "Ana","apelido_aluno" : "Andrade","data_nasc_aluno" : ISODate("2001-10-29"),"morada_aluno" : "Funchal","email_aluno" : "anaandrade@universidade.pt","telemovel_aluno" : "789789789","id_curso" : 3})
+
+
+db.Alunos.insertOne({"id" : 4,"nome_aluno" : "Mariana","apelido_aluno" : "Costa","data_nasc_aluno" : ISODate("2001-09-15"),"morada_aluno" : "Caniço","email_aluno" : "marianacosta@universidade.pt","telemovel_aluno" : "900900900","id_curso" : 2})
+
+
+db.Alunos.insertOne({"id" : 5,"nome_aluno" : "Luís","apelido_aluno" : "Castro","data_nasc_aluno" : ISODate("2002-08-05"),"morada_aluno" : "Santa Cruz","email_aluno" : "luiscastro@universidade.pt",	"telemovel_aluno" : "343434343","id_curso" : 1})
+
+
+
+Coleção Disciplinas:
+
+db.Disciplinas.insertMany([{"id":1,"nome_disc":"Disciplina 1","creditos":10,"idioma":"PT","id_curso":1},{"id":2,"nome_disc":"Disciplina 2","creditos":11,"idioma":"PT","id_curso":1},{"id":3,"nome_disc":"Disciplina 3","creditos":12,"idioma":"PT","id_curso":1},{"id":4,"nome_disc":"Disciplina 4","creditos":13,"idioma":"PT","id_curso":1},{"id":5,"nome_disc":"Disciplina 5","creditos":14,"idioma":"PT","id_curso":1}])
+
+
+db.Disciplinas.insertMany([{"id":6,"nome_disc":"Disciplina 6","creditos":10,"idioma":"PT","id_curso":2},{"id":7,"nome_disc":"Disciplina 7","creditos":11,"idioma":"PT","id_curso":2},{"id":8,"nome_disc":"Disciplina 8","creditos":12,"idioma":"PT","id_curso":2},{"id":9,"nome_disc":"Disciplina 9","creditos":13,"idioma":"PT","id_curso":2},{"id":10,"nome_disc":"Disciplina 10","creditos":14,"idioma":"PT","id_curso":2}])
+
+
+db.Disciplinas.insertMany([{"id":11,"nome_disc":"Disciplina 11","creditos":10,"idioma":"PT","id_curso":3},{"id":12,"nome_disc":"Disciplina 12","creditos":11,"idioma":"PT","id_curso":3},{"id":13,"nome_disc":"Disciplina 13","creditos":12,"idioma":"PT","id_curso":3},{"id":14,"nome_disc":"Disciplina 14","creditos":13,"idioma":"PT","id_curso":3},{"id":15,"nome_disc":"Disciplina 15","creditos":14,"idioma":"PT","id_curso":3}])
+
+
+db.Disciplinas.insertMany([{"id":16,"nome_disc":"Disciplina 16","creditos":10,"idioma":"PT","id_curso":4},{"id":17,"nome_disc":"Disciplina 17","creditos":11,"idioma":"PT","id_curso":4},{"id":18,"nome_disc":"Disciplina 18","creditos":12,"idioma":"PT","id_curso":4},{"id":19,"nome_disc":"Disciplina 19","creditos":13,"idioma":"PT","id_curso":4},{"id":20,"nome_disc":"Disciplina 20","creditos":14,"idioma":"PT","id_curso":4}])
+
+
+db.Disciplinas.insertMany([{"id":21,"nome_disc":"Disciplina 21","creditos":10,"idioma":"PT","id_curso":5},{"id":22,"nome_disc":"Disciplina 22","creditos":11,"idioma":"PT","id_curso":5},{"id":23,"nome_disc":"Disciplina 23","creditos":12,"idioma":"PT","id_curso":5},{"id":24,"nome_disc":"Disciplina 24","creditos":13,"idioma":"PT","id_curso":5},{"id":25,"nome_disc":"Disciplina 25","creditos":14,"idioma":"PT","id_curso":5}])
+
+
+
+
+(Questão 2)
+
+5 pesquisas:
+
+(1) Obter os alunos que moram no Funchal:
+db.Alunos.find({"morada_aluno":"Funchal"},{"nome_aluno":1, "apelido_aluno":1, "morada_aluno":1, "email_aluno":1}).pretty()
+
+(2) Obter os dados do curso para cada aluno:
+db.Alunos.aggregate([{$lookup:{from:"Cursos",localField:"id_curso",foreignField:"id",as: "Dados_Curso"}}]).pretty()
+
+(3) Obter o curso a que pertence cada disciplina:
+db.Disciplinas.aggregate([{$lookup:{from:"Cursos",localField:"id_curso",foreignField:"id",as: "Curso"}}]).pretty()
+
+(4) Obter as disciplinas em que um aluno está inscrito pelo seu numero de telemovel
+var aluno = db.Alunos.findOne({"telemovel_aluno":"123123123"})
+aluno
+var disciplinas = db.Disciplinas.find({"id_curso":aluno.id_curso}, {"nome_disc":1,"creditos":1,"idioma":1 })
+disciplinas
+
+(5) Obter as disciplinas de um determinado curso
+var curso = db.Cursos.findOne({"id":4},{"id":1})
+curso
+var disciplinas = db.Disciplinas.find({"id_curso":curso.id})
+disciplinas
+
+
+
+(Questão 3)
+
+Esquema de validação para Alunos
+
+Executar para verificar que não existe esquema de validação:
+db.getCollectionInfos({name: "Alunos"})
+
+Aplicar esquema de validação:
+db.runCommand({
+	collMod:"Alunos",
+	validator: {
+		$jsonSchema: {
+			required: ["nome_aluno", "apelido_aluno", "telemovel_aluno"],
+			properties: {
+				nome_aluno: { bsonType: "string", description:"Nome obrigatório"},
+				apelido_aluno: { bsonType: "string", description:"Apelido obrigatório"},
+				telemovel_aluno: { bsonType: "string", description:"Telemóvel obrigatório"}
+			}
+		}
+	}
+})
+
+Executar para verificar que já aplicado esquema de validação:
+db.getCollectionInfos({name: "Alunos"})
+
+
+
+(Questão 4)
+
+use humanos
+
+db.createCollection("pessoas", {
+	validator: {
+		$jsonSchema: {
+			required: ["nome", "apelido", "telemovel"],
+			properties: {
+				nome: { bsonType: "string"},
+				apelido: { bsonType: "string"},
+				telemovel: { bsonType: "string"}
+			}
+		}
+	}
+})
+
+
+OK:
+db.pessoas.insertOne({"id":1,"nome":"Luís","apelido":"Abreu","telemovel" : "922222222","email" : "la@mail.com"})
+
+ERRO:
+db.pessoas.insertOne({"id":2,"nome":"Pedro","apelido":"Santos","email" : "ps@mail.com"})
+
+
+
+(Questão 5)
+
+db.runCommand( {
+	collMod: "pessoas",
+	validationAction: "warn"
+}
+)
+
+Comando para experimentar se dá erro:
+db.pessoas.insertOne({"id":2,"nome":"Pedro","apelido":"Santos","email" : "ps@mail.com"})
+
+
+Se não der erro, só se vê nos logs:
+db.adminCommand( { getLog : "global" } )
+
+
+(Questão 6)
+
+OK:
+db.pessoas.insertOne({"id":1,"nome":"Luís","apelido":"Abreu","telemovel" : "922222222","email" : "la@mail.com"})
+
+ERRO:
+db.pessoas.insertOne({"id":2,"nome":"Pedro","apelido":"Santos","email" : "ps@mail.com"})

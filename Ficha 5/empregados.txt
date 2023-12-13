@@ -1,0 +1,58 @@
+// Inserir documentos nos empregados (associados a lojas)
+db.empregados.insertMany([
+  {
+    nome: "João",
+    apelido: "Silva",
+    morada: "Avenida ABC",
+    localidade: "Cidade X",
+    NIF: "987654321",
+    telefone: "123456789",
+    data_nascimento: ISODate("1990-01-01"),
+    genero: "Masculino",
+    loja_id: ObjectId("id_da_loja1") // Substitua pelo ID da loja apropriada
+  },
+  {
+    nome: "Maria",
+    apelido: "Santos",
+    morada: "Rua XYZ",
+    localidade: "Cidade Y",
+    NIF: "123456789",
+    telefone: "987654321",
+    data_nascimento: ISODate("1995-05-15"),
+    genero: "Feminino",
+    loja_id: ObjectId("id_da_loja2") // Substitua pelo ID da loja apropriada
+  },
+  {
+    nome: "Carlos",
+    apelido: "Ferreira",
+    morada: "Praça 123",
+    localidade: "Cidade Z",
+    NIF: "654321987",
+    telefone: "789123456",
+    data_nascimento: ISODate("1988-11-10"),
+    genero: "Masculino",
+    loja_id: ObjectId("id_da_loja1") // Substitua pelo ID da loja apropriada
+  },
+  {
+    nome: "Ana",
+    apelido: "Oliveira",
+    morada: "Rua 789",
+    localidade: "Cidade W",
+    NIF: "321987654",
+    telefone: "456789123",
+    data_nascimento: ISODate("1992-09-20"),
+    genero: "Feminino",
+    loja_id: ObjectId("id_da_loja3") // Substitua pelo ID da loja apropriada
+  },
+  {
+    nome: "Pedro",
+    apelido: "Ribeiro",
+    morada: "Avenida 456",
+    localidade: "Cidade V",
+    NIF: "987123456",
+    telefone: "321456789",
+    data_nascimento: ISODate("1993-04-05"),
+    genero: "Masculino",
+    loja_id: ObjectId("id_da_loja2") // Substitua pelo ID da loja apropriada
+  }
+])

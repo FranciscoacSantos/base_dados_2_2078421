@@ -1,0 +1,25 @@
+Comandos:
+show dbs
+use "nome da base de dados"
+show collections
+db."nome da colection".find()
+
+$unwind - separar arrays
+$match - procurar
+$sortByCount - contar quando nao são numericos
+$group - tem de ser dado o id e à frente o que queremos 
+
+Contas: 
+
+$sum - somar
+$avg - media
+
+
+
+Index:
+
+Ver indes- db."nome da colection".getIndexes()
+Criar index- db."nome da colection".createIndex()
+Remover Index- db."nome da colection".dropIndex()
+Remover todos os Index - db."nome da colection".dropIndexes()
+

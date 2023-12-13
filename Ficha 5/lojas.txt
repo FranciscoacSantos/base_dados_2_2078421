@@ -1,0 +1,48 @@
+// Inserir documentos nas lojas
+db.lojas.insertMany([
+  {
+    nome: "Loja A",
+    morada: "Rua 123",
+    localidade: "Cidade X",
+    NIF: "123456789",
+    telefone: "987654321",
+    hora_abertura: "08:00",
+    hora_fecho: "20:00"
+  },
+  {
+    nome: "Loja B",
+    morada: "Rua 456",
+    localidade: "Cidade Y",
+    NIF: "987654321",
+    telefone: "123456789",
+    hora_abertura: "09:00",
+    hora_fecho: "21:00"
+  },
+  {
+    nome: "Loja C",
+    morada: "Rua 789",
+    localidade: "Cidade Z",
+    NIF: "654321987",
+    telefone: "789123456",
+    hora_abertura: "07:30",
+    hora_fecho: "19:30"
+  },
+  {
+    nome: "Loja D",
+    morada: "Avenida 456",
+    localidade: "Cidade W",
+    NIF: "321987654",
+    telefone: "456789123",
+    hora_abertura: "08:30",
+    hora_fecho: "20:30"
+  },
+  {
+    nome: "Loja E",
+    morada: "Avenida 789",
+    localidade: "Cidade V",
+    NIF: "987123456",
+    telefone: "321456789",
+    hora_abertura: "08:15",
+    hora_fecho: "20:15"
+  }
+])

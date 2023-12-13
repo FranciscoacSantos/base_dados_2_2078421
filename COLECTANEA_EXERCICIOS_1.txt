@@ -1,0 +1,32 @@
+1. db.video_movieDetails.find({"year": 2014})
+
+2. db.video_movieDetails.find({"countries": ["Portugal"]})
+
+3. db.video_movieDetails.find({"imdb.rating": {$gt: 9}})
+
+4. db.video_movieDetails.find({"awards.wins": {$gt: 100}, "actors": "Javier Bardem"})
+
+5. db.video_movieDetails.find({"actors": "Brad Pitt"}, {"title":1, "year":1})
+
+6. db.video_movieDetails.find( {$or: [ { "actors": "Brad Pitt" }, { "actors": "Angelina Jolie" } ] }, {"title": 1, "actors": 1} )
+
+7. db.video_movieDetails.updateOne({ "year": 2014 }, { $set: { "year": 2300 } })
+
+8.  db.video_movieDetails.updateMany({ },{ $rename: { "title": "titulo" } })
+
+9.
+db.video_movieDetails.insertOne({"title": "teste"})
+db.video_movieDetails.insert({"title": "teste"})
+
+10. db.video_movieDetails.deleteMany({"genres":"Action"})
+
+11. db.video_movieDetails.deleteMany({"imdb.rating": {$eq:7}})
+
+12. 
+
+- Substitui todo o documento com a nova estrutura
+db.video_movieDetails.replaceOne({"titulo": "Once Upon a Time in the West"}, {"titulo":"Titulo alterado Once Upon a Time in the West", "year":2022})
+
+- Substitui os valores dos campos, mantendo a estrutura 
+db.video_movieDetails.update({"titulo": "2001: A Space Odyssey"}, {$set:{"titulo":"Titulo alterado 2001: A Space Odyssey", "year":2022}})
+

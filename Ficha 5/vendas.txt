@@ -1,0 +1,83 @@
+// Inserir documentos nas vendas (associadas a clientes e itens)
+db.vendas.insertMany([
+  {
+    numero_fatura: "FAT001",
+    data_fatura: ISODate("2023-11-08"),
+    NIF_cliente: "987654321",
+    total_pagar: 100.00,
+    itens: [
+      {
+        designacao_item: "T-Shirt",
+        quantidade_vendida: 2,
+        preco_unitario: 25.00
+      }
+    ]
+  },
+  {
+    numero_fatura: "FAT002",
+    data_fatura: ISODate("2023-11-09"),
+    NIF_cliente: "123456789",
+    total_pagar: 75.50,
+    itens: [
+      {
+        designacao_item: "Calças",
+        quantidade_vendida: 1,
+        preco_unitario: 50.00
+      },
+      {
+        designacao_item: "Sapatos",
+        quantidade_vendida: 2,
+        preco_unitario: 12.75
+      }
+    ]
+  },
+  {
+    numero_fatura: "FAT003",
+    data_fatura: ISODate("2023-11-10"),
+    NIF_cliente: "654321987",
+    total_pagar: 120.25,
+    itens: [
+      {
+        designacao_item: "Camisola",
+        quantidade_vendida: 3,
+        preco_unitario: 35.00
+      },
+      {
+        designacao_item: "Cinto",
+        quantidade_vendida: 1,
+        preco_unitario: 10.25
+      }
+    ]
+  },
+  {
+    numero_fatura: "FAT004",
+    data_fatura: ISODate("2023-11-11"),
+    NIF_cliente: "321987654",
+    total_pagar: 65.75,
+    itens: [
+      {
+        designacao_item: "Meias",
+        quantidade_vendida: 5,
+        preco_unitario: 6.50
+      }
+    ]
+  },
+  {
+    numero_fatura: "FAT005",
+    data_fatura: ISODate("2023-11-12"),
+    NIF_cliente: "987123456",
+    total_pagar: 90.80,
+    itens: [
+      {
+        designacao_item: "Saia",
+        quantidade_vendida: 1,
+        preco_unitario: 45.00
+      },
+      {
+        designacao_item: "Blusa",
+        quantidade_vendida: 2,
+        preco_unitario: 20.40
+      }
+    ]
+  }
+])

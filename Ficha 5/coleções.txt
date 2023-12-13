@@ -1,0 +1,88 @@
+// Criar a base de dados
+use Roupa_db
+
+// Crie a coleção para lojas com esquema de validação
+db.createCollection("lojas", {
+  validator: {
+    $jsonSchema: {
+      bsonType: "object",
+      required: ["nome", "morada", "localidade", "NIF", "telefone", "hora_abertura", "hora_fecho"],
+      properties: {
+        nome: { bsonType: "string" },
+        morada: { bsonType: "string" },
+        localidade: { bsonType: "string" },
+        NIF: { bsonType: "string" },
+        telefone: { bsonType: "string" },
+        hora_abertura: { bsonType: "string" },
+        hora_fecho: { bsonType: "string" }
+      }
+    }
+  }
+})
+
+// Crie a coleção para empregados com esquema de validação
+db.createCollection("empregados", {
+  validator: {
+    $jsonSchema: {
+      bsonType: "object",
+      required: ["nome", "apelido", "morada", "localidade", "NIF", "telefone", "data_nascimento", "genero", "loja_id"],
+      properties: {
+        nome: { bsonType: "string" },
+        apelido: { bsonType: "string" },
+        morada: { bsonType: "string" },
+        localidade: { bsonType: "string" },
+        NIF: { bsonType: "string" },
+        telefone: { bsonType: "string" },
+        data_nascimento: { bsonType: "date" },
+        genero: { enum: ["Masculino", "Feminino", "Outro"] },
+        loja_id: { bsonType: "objectId" } // Referência à loja em que trabalham
+      }
+    }
+  }
+})
+
+// Crie a coleção para vendas com esquema de validação
+db.createCollection("vendas", {
+  validator: {
+    $jsonSchema: {
+      bsonType: "object",
+      required: ["numero_fatura", "data_fatura", "NIF_cliente", "total_pagar", "itens"],
+      properties: {
+        numero_fatura: { bsonType: "string" },
+        data_fatura: { bsonType: "date" },
+        NIF_cliente: { bsonType: "string" }, // Referência aos dados do cliente
+        total_pagar: { bsonType: "decimal" },
+        itens: {
+          bsonType: "array",
+          items: {
+            bsonType: "object",
+            required: ["designacao_item", "quantidade_vendida", "preco_unitario"],
+            properties: {
+              designacao_item: { bsonType: "string" },
+              quantidade_vendida: { bsonType: "int" },
+              preco_unitario: { bsonType: "decimal" }
+            }
+          }
+        }
+      }
+    }
+  }
+})
+
+// Crie a coleção para clientes com esquema de validação
+db.createCollection("clientes", {
+  validator: {
+    $jsonSchema: {
+      bsonType: "object",
+      required: ["nome", "apelido", "morada", "localidade", "telefone", "NIF"],
+      properties: {
+        nome: { bsonType: "string" },
+        apelido: { bsonType: "string" },
+        morada: { bsonType: "string" },
+        localidade: { bsonType: "string" },
+        telefone: { bsonType: "string" },
+        NIF: { bsonType: "string" }
+      }
+    }
+  }
+})

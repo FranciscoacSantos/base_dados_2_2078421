@@ -1,0 +1,43 @@
+// Inserir documentos nos clientes
+db.clientes.insertMany([
+  {
+    nome: "Maria",
+    apelido: "Santos",
+    morada: "Rua ZZZ",
+    localidade: "Cidade Y",
+    telefone: "111222333",
+    NIF: "111222333"
+  },
+  {
+    nome: "José",
+    apelido: "Silva",
+    morada: "Avenida ABC",
+    localidade: "Cidade X",
+    telefone: "555666777",
+    NIF: "555666777"
+  },
+  {
+    nome: "Ana",
+    apelido: "Ferreira",
+    morada: "Praça 123",
+    localidade: "Cidade Z",
+    telefone: "999888777",
+    NIF: "999888777"
+  },
+  {
+    nome: "Pedro",
+    apelido: "Ribeiro",
+    morada: "Avenida 456",
+    localidade: "Cidade W",
+    telefone: "123789456",
+    NIF: "123789456"
+  },
+  {
+    nome: "Sofia",
+    apelido: "Carvalho",
+    morada: "Rua 789",
+    localidade: "Cidade V",
+    telefone: "456123789",
+    NIF: "456123789"
+  }
+])

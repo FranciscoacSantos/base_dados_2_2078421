@@ -1,0 +1,84 @@
+use clubevideo
+
+
+Coleções:
+
+db.createCollection("Clientes")
+db.createCollection("Videos")
+db.createCollection("Aluguer")
+
+
+Coleção de Clientes:
+
+db.clientes.insertMany([{ id: "cli001", nome: "João Silva", morada: "Rua A, nº 123", telefone: "123456789" }, { id: "cli002", nome: "Maria Santos", morada: "Rua B, nº 456", telefone: "987654321" }, { id: "cli003", nome: "Carlos Oliveira", morada: "Rua C, nº 789", telefone: "111222333" }, { id: "cli004", nome: "Ana Pereira", morada: "Rua D, nº 1011", telefone: "444555666" }, { id: "cli005", nome: "Miguel Costa", morada: "Rua E, nº 1213", telefone: "777888999" }]);
+
+
+Coleção de Filmes:
+
+db.videos.insertMany([{ id: "vid001", titulo: "Matrix", genero: "Ficção Científica", duracao: 120, empresaDistribuicao: "Warner Bros" }, { id: "vid002", titulo: "Pulp Fiction", genero: "Crime", duracao: 154, empresaDistribuicao: "Miramax" }, { id: "vid003", titulo: "The Shawshank Redemption", genero: "Drama", duracao: 142, empresaDistribuicao: "Columbia Pictures" }, { id: "vid004", titulo: "Inception", genero: "Ação", duracao: 148, empresaDistribuicao: "Warner Bros" }, { id: "vid005", titulo: "The Dark Knight", genero: "Ação", duracao: 152, empresaDistribuicao: "Warner Bros" }]);
+
+
+
+Coleção de Aluguer:
+
+db.aluguer.insertMany([{ cliente_id: "cli001", video_id: "vid001", dataSaida: "2023-10-11", dataEntrada: "2023-10-13" }, { cliente_id: "cli002", video_id: "vid002", dataSaida: "2023-12-04", dataEntrada: "2023-12-13" }, { cliente_id: "cli003", video_id: "vid003", dataSaida: "2023-08-01", dataEntrada: "" }, { cliente_id: "cli004", video_id: "vid004", dataSaida: "2023-01-24", dataEntrada: "2023-03-13" }, { cliente_id: "cli005", video_id: "vid005", dataSaida: "2023-07-04", dataEntrada: "2023-08-02" }]);
+
+
+
+Escreva uma pesquisa para realizar um left out join usando a etapa de agregação $lookup.
+
+db.aluguer.aggregate([{ $lookup: { from: "videos", localField: "video_id", foreignField: "id", as: "video_info" } }, { $project: { cliente_id: 1, dataSaida: 1, dataEntrada: 1, "video_info.titulo": 1, "video_info.genero": 1, "video_info.duracao": 1, "video_info.empresaDistribuicao": 1 } }])
+
+
+------------------------------------------------------------------------------------------------------------------------------------------
+
+use pastelaria 
+
+db.createCollection("Clientes")
+db.createCollection("Encomendas")
+db.createCollection("Receitas")
+db.createCollection("Ingredientes")
+
+
+Coleção de Clientes:
+
+db.clientes.insertMany([
+  { id: 1, nome: "Ana Silva", morada: "Rua A, nº 123", telefone: "123456789", contribuinte: "123456789" },
+  { id: 2, nome: "Carlos Santos", morada: "Rua B, nº 456", telefone: "987654321", contribuinte: "987654321" },
+  { id: 3, nome: "Marta Oliveira", morada: "Rua C, nº 789", telefone: "111222333", contribuinte: "111222333" },
+  { id: 4, nome: "José Pereira", morada: "Rua D, nº 567", telefone: "444555666", contribuinte: "444555666" },
+  { id: 5, nome: "Rita Costa", morada: "Rua E, nº 890", telefone: "999888777", contribuinte: "999888777" }
+]);
+
+
+Coleção de Encomendas:
+
+db.encomendas.insertMany([
+  { id: 1, data_encomenda: "2023-10-11", local: "Pastelaria A" },
+  { id: 2, data_encomenda: "2023-10-10", local: "Pastelaria B" },
+  { id: 3, data_encomenda: "2023-10-09", local: "Pastelaria C" },
+  { id: 4, data_encomenda: "2023-10-08", local: "Pastelaria A" },
+  { id: 5, data_encomenda: "2023-10-07", local: "Pastelaria B" }
+]);
+
+
+Coleção de Receitas:
+
+db.receitas.insertMany([
+  { id: 1, designacao: "Bolo de Chocolate", tempo_preparacao: 60, peso: 500, calorias: 800, custo: 15.0 },
+  { id: 2, designacao: "Tarte de Morango", tempo_preparacao: 45, peso: 700, calorias: 600, custo: 20.0 },
+  { id: 3, designacao: "Pão de Alho", tempo_preparacao: 30, peso: 300, calorias: 400, custo: 10.0 },
+  { id: 4, designacao: "Cupcake de Baunilha", tempo_preparacao: 40, peso: 200, calorias: 350, custo: 12.0 },
+  { id: 5, designacao: "Cheesecake de Frutos Vermelhos", tempo_preparacao: 50, peso: 600, calorias: 900, custo: 25.0 }
+]);
+
+
+Coleção de Ingredientes:
+
+db.ingredientes.insertMany([
+  { id: 1, nome: "Chocolate", unidade: "g", stock: 1000 },
+  { id: 2, nome: "Morango", unidade: "un", stock: 500 },
+  { id: 3, nome: "Alho", unidade: "dente", stock: 200 },
+  { id: 4, nome: "Baunilha", unidade: "ml", stock: 300 },
+  { id: 5, nome: "Frutos Vermelhos", unidade: "g", stock: 800 }
+]);
